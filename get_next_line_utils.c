@@ -40,7 +40,7 @@ char	*till_next_line(char	*holder)
 	while (holder[i] && holder[i] != '\n')
 		i++;
 	result = malloc(sizeof(char) * i + 2);
-	if (!result && !holder)
+	if (!result)
 		return (NULL);
 	i = 0;
 	while (holder[i] && holder[i] != '\n')
@@ -63,13 +63,13 @@ char	*after_next_line(char *holder)
 	i = 0;
 	while (holder[i] && holder[i] != '\n')
 		i++;
-	if (holder[i] == '\n')
-		i++;
-	j = i;
-	while (holder[j])
-		j++;
-	j--;
-	result = malloc(sizeof(char) * (j - i + 1));
+	if (!holder[i])
+	{
+		free (holder);
+		return (NULL);
+	}
+	result = malloc(sizeof(char) * (ft_strlen(holder) - i + 1));
+	i++;
 	if (!result)
 		return (NULL);
 	j = 0;

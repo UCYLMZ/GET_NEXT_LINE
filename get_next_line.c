@@ -15,7 +15,10 @@ char	*read_line(int fd, char *holder)
 	{
 		amount = read(fd, buffer, BUFFER_SIZE);
 		if (amount == -1)
+		{
+			free (buffer);
 			return (NULL);
+		}
 		buffer[amount] = '\0';
 		holder = ft_strjoin_v2(holder, buffer);
 	}
@@ -47,7 +50,7 @@ int main()
 	printf("%s", line);
 
 	line = get_next_line(fd);
-	//printf("*%03hhu*", line[5]);
+	printf("*%03hhu*", line[5]);
 	printf("%s", line);
 
 	line = get_next_line(fd);
