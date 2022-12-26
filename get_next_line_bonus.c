@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <fcntl.h>
 #include <stdio.h>
 
@@ -28,24 +28,38 @@ char	*read_line(int fd, char *holder)
 
 char	*get_next_line(int fd)
 {
-	static char	*holder;
+	static char	*holder[1024];
 	char		*result;
 
 	if (fd < 0 && BUFFER_SIZE <= 0)
 		return (NULL);
-	holder = read_line(fd, holder);
-	if (!holder)
+	holder[fd] = read_line(fd, holder[fd]);
+	if (!holder[fd])
 		return (NULL);
-	result = till_next_line(holder);
-	holder = after_next_line(holder);
+	result = till_next_line(holder[fd]);
+	holder[fd] = after_next_line(holder[fd]);
 	return (result);
 }
 
 /*int main()
 {
-	int fd = open("test2.txt", O_RDONLY);
+	int fd3 = open("test2.txt", O_RDONLY);
+	int fd4 = open("test.txt", O_RDONLY);
 
 	char *line;
+	int i = 3;
+	int j = 0;
+	while (j < 10)
+	{
+		i = 3;
+		while (i <= 4)
+		{
+			line = get_next_line_bonus(i);
+			printf("%s", line);
+			i++;
+		}
+		j++;
+	}
 	line = get_next_line(fd);
 	printf("%s", line);
 
