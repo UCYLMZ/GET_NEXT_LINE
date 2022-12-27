@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: uyilmaz <uyilmaz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/27 12:54:32 by uyilmaz           #+#    #+#             */
+/*   Updated: 2022/12/27 12:55:04 by uyilmaz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line_bonus.h"
-#include <fcntl.h>
-#include <stdio.h>
 
 char	*read_line(int fd, char *holder)
 {
@@ -40,45 +50,3 @@ char	*get_next_line(int fd)
 	holder[fd] = after_next_line(holder[fd]);
 	return (result);
 }
-
-/*int main()
-{
-	int fd3 = open("test2.txt", O_RDONLY);
-	int fd4 = open("test.txt", O_RDONLY);
-
-	char *line;
-	int i = 3;
-	int j = 0;
-	while (j < 10)
-	{
-		i = 3;
-		while (i <= 4)
-		{
-			line = get_next_line_bonus(i);
-			printf("%s", line);
-			i++;
-		}
-		j++;
-	}
-	line = get_next_line(fd);
-	printf("%s", line);
-
-	line = get_next_line(fd);
-	printf("*%03hhu*", line[5]);
-	printf("%s", line);
-
-	line = get_next_line(fd);
-	printf("%s", line);
-
-	line = get_next_line(fd);
-	printf("%s", line);
-
-	line = get_next_line(fd);
-	printf("%s", line);
-
-	line = get_next_line(fd);
-	printf("%s", line);
-
-	line = get_next_line(fd);
-	printf("%s", line);
-}*/
